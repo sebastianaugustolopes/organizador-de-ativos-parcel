@@ -1,0 +1,106 @@
+// Importa o arquivo base.scss que contém estilos globais e mixins reutilizáveis
+@use 'base';
+
+// Footer principal, define o fundo e o layout geral
+.footer {
+    background-color: base.$backgroundFooter;
+    display: grid;
+
+    // Conteúdo do footer, estruturado em um grid com espaçamento
+    &__content {
+        @include base.container(); // Aplica um container responsivo
+        padding-bottom: 30px;
+        display: grid;
+        grid-template-rows: 1fr auto; // Define a estrutura do footer
+        background: base.$backgroundFooter;
+        gap: 30px; // Espaçamento entre elementos
+    }
+
+    // Navegação do footer
+    &__nav {
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            @media screen and (max-width: 600px) {
+                flex-direction: column; // Empilha os itens da lista em telas menores
+                font-size: .8em;
+            }
+        }
+    
+        // Links da navegação do footer
+        &-link {
+            color: base.$lightBlack;
+            font-weight: 500;
+            padding: 8px 12px; // Define espaçamento interno para melhor área de clique
+            border-radius: 4px; // Borda arredondada
+            transition: all 0.3s ease; // Efeito suave de transição
+    
+            &:hover {
+                color: base.$black; // Muda a cor ao passar o mouse
+            }
+        }
+    }
+
+    // Ícones de redes sociais alinhados ao centro
+    &__social-medias {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 20px; // Espaçamento entre os ícones
+    }
+
+    // Estilização dos links para redes sociais
+    &__social-link {
+        background: base.$lightBlack;
+        @include base.button(); // Usa o mixin 'Button' para o estilo do botão
+        padding: 10px;
+        border-radius: 50px; // Torna os botões circulares
+        transition: background 0.3s ease, transform 0.3s ease;
+
+        &:hover {
+            background-color: base.$white; // Muda a cor do fundo ao passar o mouse
+            transform: scale(1.1); // Aumenta levemente o botão
+        }
+    }
+
+    // Ícones dentro dos botões das redes sociais
+    &__social-icon {
+        width: 24px;
+        height: 24px;
+        color: base.$white;
+        fill: base.$white;
+        transition: color 0.3s ease, fill 0.3s ease;
+
+        .footer__social-link:hover & {
+            color: base.$black;
+            fill: base.$black; // Muda a cor do ícone ao passar o mouse
+        }
+    }
+
+    // Área com selo/marca no footer
+    &__stamp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        // Logo do selo com efeito de hover
+        &__logo {
+            transition: fill 0.2s ease;
+
+            &:hover {
+                fill: base.$riotGameLogo; // Muda a cor do logo ao passar o mouse
+            }
+        }
+
+        // Texto de direitos autorais
+        .copywrite {
+            margin-top: 25px;
+            color: base.$lightGray;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+    }
+}

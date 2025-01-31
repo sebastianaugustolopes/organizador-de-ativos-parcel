@@ -1,0 +1,29 @@
+{
+  "name": "parcel",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && parcel build source/*.html && npm run organize && npm run update",
+    "organize": "node organize-files.js",
+    "update": "node update-paths.js",
+    "dev": "npm run clean && parcel source/*.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.13.3",
+    "fs-extra": "^11.3.0",
+    "parcel": "^2.13.3",
+    "rimraf": "^6.0.1",
+    "sass": "^1.83.4",
+    "svgo": "^3.3.2"
+  },
+  "targets": {
+    "default": {
+      "distDir": "dist",
+      "publicUrl": "./"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+// Importa o arquivo base.scss que contém estilos globais e mixins reutilizáveis
+@use 'base';
+
+// Estilos do carrossel
+.carousel {
+    padding-bottom: 80px; // Adiciona um espaço abaixo do carrossel
+    
+    &__container {
+        position: relative; // Define o container como referência para elementos filhos posicionados de forma absoluta
+        @include base.container(95%); // Aplica um mixin para centralizar e definir largura máxima
+        
+        .cards {
+            width: 100%;
+            max-width: 1450px; // Limita a largura máxima do carrossel
+            padding: 20px 10px; // Adiciona espaçamento interno
+            margin: 0 auto 30px; // Centraliza o carrossel na tela
+            overflow-x: hidden; // Esconde qualquer conteúdo que ultrapasse a largura disponível
+
+            &__list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                .card {
+                    &__link {
+                        user-select: none; // Impede a seleção de texto dentro do card
+                        display: block;
+                        background: base.$white; 
+                        border-radius: 20px;
+                        transition: 0.5s ease; // Suaviza as transições de estado
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.455); 
+                        height: 480px; // Define a altura fixa do card
+                        cursor: grab; // Indica que o card pode ser arrastado
+                        position: relative;
+
+                        // Efeito ao passar o mouse
+                        &:hover {
+                            transform: translateY(-10px); // Move o card levemente para cima
+                            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); // Aumenta a sombra para dar um efeito de destaque
+                        }
+
+                        .card__image {
+                            width: 100%; // Faz a imagem ocupar toda a largura do card
+                            aspect-ratio: 16 / 9; // Mantém a proporção da imagem
+                            object-fit: cover; // Garante que a imagem cubra todo o espaço sem distorção
+                            border-radius: 20px 20px 0 0; // Arredonda apenas os cantos superiores
+                        }
+
+                        .card__badge {
+                            color: base.$white;
+                            background: base.$PrimaryColor; // Define a cor de fundo da badge
+                            padding: 8px 16px;
+                            font-size: .8em;
+                            font-weight: bold;
+                            width: fit-content; // Faz o badge se ajustar ao tamanho do conteúdo
+                            border-radius: 20px;
+                            display: block;
+                            margin: 10px 20px;
+                        }
+
+                        .card__description {
+                            margin: 20px;
+                            font-size: 12px;
+                            color: base.$black;
+                            
+                            p {
+                                text-align: justify; // Justifica o texto para melhor leitura
+                                hyphens: auto; // Adiciona hifenização automática para evitar quebras estranhas
+                                display: inline-block;
+                                text-align: justify;
+                                hyphens: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /* Estilização dos botões de navegação do carrossel */
+        .swiper-slide-button {
+            position: absolute;
+            top: 25%; // Posiciona os botões na parte superior do carrossel
+            width: 40px; // Largura do botão
+            height: 40px; // Altura do botão
+            background-color: rgba(255, 255, 255, 0.8); // Fundo branco com transparência
+            border-radius: 50%; // Deixa o botão redondo
+            box-shadow: 1px 2px 10px black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            // Efeito ao passar o mouse
+            &:hover {
+                background-color: rgba(255, 255, 255, 1); // Remove a transparência ao passar o mouse
+            }
+
+            &::after {
+                font-family: 'Font Awesome 5 Free'; /* Utiliza a fonte 'Font Awesome 5 Free' para exibir ícones, como as setas, em vez de caracteres padrão. */
+                font-weight: 900;
+                font-size: 20px;
+                color: #000;
+            }
+
+            // Esconde os botões de navegação em telas menores
+            @media screen and (max-width: 800px), screen and (max-width: 600px) {
+                display: none;
+            }
+        }
+
+        /* Estilo do botão de navegação 'anterior' */
+        .swiper-button-prev {
+            left: 25px; // Posiciona à esquerda
+
+            &::after {
+                content: '\f060'; // Ícone de seta para a esquerda
+            }
+        }
+
+        /* Estilo do botão de navegação 'próximo' */
+        .swiper-button-next {
+            right: 25px; // Posiciona à direita
+
+            &::after {
+                content: '\f061'; // Ícone de seta para a direita
+            }
+        }
+    }
+}

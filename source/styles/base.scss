@@ -1,0 +1,61 @@
+// Importa a fonte Poppins do Google Fonts para ser usada globalmente
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// Definição de variáveis de cores para facilitar a reutilização e manutenção do código
+$white: white;
+$black: black;
+$lightBlack: #333;
+$lightGray: #666;
+$gray: rgb(74, 74, 74);
+$PrimaryColor: #262F40;
+$SecundaryColor: #6D80A6;
+$backgroundFooter: #e3e3e3;
+$riotGameLogo: #EC0830;
+
+// Reset básico para remover margens, paddings e estilos padrão dos navegadores
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none; 
+    text-decoration: none;
+}
+
+// Estilização global do body
+body{
+    font-family: 'Poppins', sans-serif; // Define a fonte global do site
+    background-color: $white; // Define o fundo branco para toda a página
+}
+
+// Mixin para criar um container responsivo e reutilizável
+@mixin container($max-width: 90%) {
+    width: 100%;
+    max-width: $max-width;
+    margin: 1rem auto 0 auto; // Centraliza o container na página com margem superior
+    align-items: center; // Garante alinhamento vertical centralizado
+}
+
+// Mixin para estilização de botões reutilizáveis
+@mixin button($text-color: $white) {
+    // Layout
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    width: auto;
+    height: 2.8em;
+    padding: .8em 3.3em .8em .8em; // Padding maior à direita para acomodar um ícone
+    cursor: pointer; // Altera o cursor para indicar interatividade
+
+    // Texto
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-transform: uppercase; // Deixa o texto do botão sempre em maiúsculas
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.577); // Adiciona uma leve sombra para destaque
+    
+    // Estilo
+    border: none;
+    border-radius: 20px; // Borda arredondada para um design mais moderno
+}
